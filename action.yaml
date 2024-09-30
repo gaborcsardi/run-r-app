@@ -21,6 +21,7 @@ runs:
         -v ${GITHUB_WORKSPACE}:/__w \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -w /app Rscript index.R
+    shell: bash
   - name: Deploy to GitHub pages 🚀
     uses: JamesIves/github-pages-deploy-action@v4.6.8
     with:
