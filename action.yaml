@@ -17,7 +17,8 @@ runs:
     run: |
       docker pull ghcr.io/${{ github.repository }}:latest
       docker run -e CI=true -e GITHUB_ACTIONS=true \
-        -e GITHUB_WORKSPACE=/__w -e RUNNER_TEMP=/tmp \
+        -e R_APP_WORKSPACE=/__w -e GITHUB_WORKSPACE=/__w \
+        -e R_APP_TEMP=/tmp -e RUNNER_TEMP=/tmp \
         -v ${GITHUB_WORKSPACE}:/__w \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -w /app ghcr.io/${{ github.repository }}:latest \
