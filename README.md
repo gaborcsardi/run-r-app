@@ -37,7 +37,8 @@ jobs:
   directory.
 * `branch`: branch to publish, default is `gh-pages`.
 * `main`: the name of the R file to run with `Rscript`. It is a path
-  relative to the app directory (the `app-dir` parameter).
+  relative to the app directory (the `app-dir` parameter). The default
+  is `index.R`.
 
 ## R project setup
 

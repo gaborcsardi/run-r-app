@@ -14,7 +14,8 @@ inputs:
   main:
     description: |
       The name of the R file to run with `Rscript`. It is a path relative
-      to the app directory (the `app-dir` parameter).
+      to the app directory (the `app-dir` parameter). The default is
+      `index.R`.
     default: 'index.R'
 runs:
   using: composite
