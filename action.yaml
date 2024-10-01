@@ -3,10 +3,19 @@ description: |
   Run a Dockerized R app on GitHub Actions, and deploy the results
   to GitHub Pages.
 inputs:
+  app-dir:
+    description: |
+      Directory of the R app. It will be used as the working directory.
+    default: '/app'
   branch:
     description: |
       Branch to publish, default is `gh-pages`.
     default: gh-pages
+  main:
+    description: |
+      The name of the R file to run with `Rscript`. It is a path relative
+      to the app directory (the `app-dir` parameter).
+    default: 'index.R'
 runs:
   using: composite
   steps:
@@ -21,8 +30,9 @@ runs:
         -e R_APP_TEMP=/tmp -e RUNNER_TEMP=/tmp \
         -v ${GITHUB_WORKSPACE}:/__w \
         -v /var/run/docker.sock:/var/run/docker.sock \
-        -w /app ghcr.io/${{ github.repository }}:latest \
-        Rscript index.R
+        -w ${{ inputs.app-dir }} \
+        ghcr.io/${{ github.repository }}:latest \
+        Rscript ${{ inputs.main }}
     shell: bash
   - name: Deploy to GitHub pages 🚀
     uses: JamesIves/github-pages-deploy-action@v4.6.8
